@@ -15,11 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SingUpPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	correo: string = 'ddmalqui@gmail.com';
+	password: string;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SingUpPage');
-  }
+
+  	constructor(public navCtrl: NavController, public navParams: NavParams) {
+  	}
+
+  	ionViewDidLoad() {
+    	console.log('ionViewDidLoad SingUpPage');
+  	}
 
 }
