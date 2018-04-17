@@ -20,15 +20,15 @@
 
 	<ion-item>
 		<ion-label floating>correo</ion-label>
-		<ion-input type=”email” [(ngModel)]="correo"></ion-input>
+		<ion-input type="email" [(ngModel)]="correo"></ion-input>
 	</ion-item>
 	<ion-item>
 		<ion-label floating>pass</ion-label>
-		<ion-input type=”password” [(ngModel)]="pass"></ion-input>
+		<ion-input type="password" [(ngModel)]="pass"></ion-input>
 	</ion-item>
 
 	<div class="form-item">
-  	<button ion-button secondary menuToggle (click)="createAccount()">Crear Cuenta</button>
+  	<button ion-button secondary (click)="createAccount()">Crear Cuenta</button>
   	</div>
 
 </ion-content>
