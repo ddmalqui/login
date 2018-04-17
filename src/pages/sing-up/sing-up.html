@@ -24,11 +24,11 @@
 	</ion-item>
 	<ion-item>
 		<ion-label floating>pass</ion-label>
-		<ion-input type=”password”></ion-input>
+		<ion-input type=”password” [(ngModel)]="pass"></ion-input>
 	</ion-item>
 
 	<div class="form-item">
-  	<button ion-button secondary menuToggle>Crear Cuenta</button>
+  	<button ion-button secondary menuToggle (click)="createAccount()">Crear Cuenta</button>
   	</div>
 
 </ion-content>

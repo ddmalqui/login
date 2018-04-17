@@ -16,7 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class SingUpPage {
 
 	correo: string = 'ddmalqui@gmail.com';
-	password: string;
+	pass: string;
 
 
   	constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -24,6 +24,10 @@ export class SingUpPage {
 
   	ionViewDidLoad() {
     	console.log('ionViewDidLoad SingUpPage');
+  	}
+
+  	createAccount() {
+    	console.log('sdf asdf');
   	}
 
 }
