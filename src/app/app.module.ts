@@ -6,6 +6,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+import { Authentication } from '../services/authentication';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -16,6 +18,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {SingUpPage} from '../pages/sing-up/sing-up';
 
 import {firebaseConfig} from '../environments/firebase-config';
+
+
 
 
 
@@ -32,7 +36,6 @@ import {firebaseConfig} from '../environments/firebase-config';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule,
     AngularFireAuthModule,
-    AngularFireDatabaseModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,6 +47,7 @@ import {firebaseConfig} from '../environments/firebase-config';
   providers: [
     StatusBar,
     SplashScreen,
+    Authentication,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
