@@ -30,8 +30,12 @@ export class SingUpPage {
     	console.log('ionViewDidLoad SingUpPage');
   	}
 
-  	createAccount() {
+  	createAccountWithEmailAndPassword() {
       this.Auth.createUserWithEmailAndPassword(this.correo,this.pass);
   	}
+
+    createAccountWithGoogle() {
+      this.Auth.createUserWithGoogle();
+    }
 
 }

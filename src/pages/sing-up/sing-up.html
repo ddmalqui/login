@@ -28,7 +28,15 @@
 	</ion-item>
 
 	<div class="form-item">
-  	<button ion-button secondary (click)="createAccount()">Crear Cuenta</button>
+  	<button ion-button secondary (click)="createAccountWithEmailAndPassword()">Crear Cuenta</button>
+  	</div>
+
+  	<div class="form-item">
+  	<button ion-button secondary (click)="createAccountWithGoogle()">
+  		<ion-icon name="logo-google"></ion-icon>	
+  		Crear Cuenta con google
+  	</button>
+
   	</div>
 
 </ion-content>
