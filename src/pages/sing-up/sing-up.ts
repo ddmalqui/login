@@ -38,4 +38,8 @@ export class SingUpPage {
       this.Auth.createUserWithGoogle();
     }
 
+    createAccountWithFacebook() {
+      this.Auth.createUserWithFacebook();
+    }
+
 }

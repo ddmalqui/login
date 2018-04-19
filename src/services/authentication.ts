@@ -14,12 +14,22 @@ export class Authentication{
 
 		createUserWithGoogle(){
 			let provider = new firebase.auth.GoogleAuthProvider;
-			
+			return this.createUserWithProvider(provider);
+		}
+
+		createUserWithFacebook(){
+			let provider = new firebase.auth.FacebookAuthProvider;
+			return this.createUserWithProvider(provider);
+		}
+
+
+		createUserWithProvider(provider){
 			return this.AgularAuth.auth.signInWithRedirect(provider)
 			.then(result =>{
 					return firebase.auth().getRedirectResult;
 				});
-
 		}
+
+
 
 }
