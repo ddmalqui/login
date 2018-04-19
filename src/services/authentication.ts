@@ -2,11 +2,36 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
-
+const identifire = "token";
 @Injectable()
 
 export class Authentication{
-	constructor(private AgularAuth : AngularFireAuth){}
+	constructor(private AgularAuth : AngularFireAuth){
+		this.setUp();
+	}
+
+	public token : string;
+
+		setUp(){
+			//guardo en el local storage si alguien ya esta loguiado.
+			this.token = this.getTockenFromLS();
+			console.log(this.token);
+			this.AgularAuth.authState.subscribe((firebaseUser) => {
+				if(firebaseUser){
+					localStorage.setItem(identifire,firebaseUser.uid);
+					this.token = firebaseUser.uid;
+				}else{
+					localStorage.removeItem(identifire);
+					this.token = null;
+				}
+			}
+				)
+		}
+
+		getTockenFromLS() : string{
+			return localStorage.getItem(identifire);
+
+		}
 
 		createUserWithEmailAndPassword(correo,password){
 			return this.AgularAuth.auth.createUserWithEmailAndPassword(correo,password);
