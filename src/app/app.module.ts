@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
 import { Authentication } from '../services/authentication';
+import { Uploader } from '../services/uploader';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -48,6 +49,7 @@ import {firebaseConfig} from '../environments/firebase-config';
     StatusBar,
     SplashScreen,
     Authentication,
+    Uploader,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

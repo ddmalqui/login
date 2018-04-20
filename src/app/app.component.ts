@@ -19,8 +19,9 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  invitedPages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform,
+  constructor( public platform: Platform,
                public statusBar: StatusBar, 
                public splashScreen: SplashScreen,
                public auth : Authentication) {
@@ -28,9 +29,10 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage },
-      { title: 'Crear Cuenta', component: SingUpPage }];
+      { title: 'Inicio', component: HomePage }];
+
+       this.invitedPages = [{ title: 'Crear Cuenta', component: SingUpPage }];
+
   }
 
   initializeApp() {
@@ -47,4 +49,9 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  logOut(){
+    this.auth.logOut();
+  }
+
 }

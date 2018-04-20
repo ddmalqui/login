@@ -55,6 +55,13 @@ export class Authentication{
 				});
 		}
 
+		logOut(){
+			console.log('sarasa');
+			return this.AgularAuth.auth.signOut().then(() => 
+				{this.token = null}
+				)
+		}
+
 
 
 }

@@ -13,6 +13,16 @@
         </button>
       </div>
 
+      <div *ngFor="let p of invitedPages" (click)="openPage(p)">
+        <button menuClose ion-item *ngIf="!auth.token" >
+          {{p.title}}
+        </button>
+      </div>
+
+      <button menuClose ion-item (click)="logOut()" *ngIf="!!auth.token" >
+          Cerrar Sesion
+      </button>
+
     </ion-list>
   </ion-content>
 
