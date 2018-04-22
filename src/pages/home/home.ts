@@ -29,7 +29,6 @@ export class HomePage {
   submit(){
   	if (this.files.lenght <= 0)
   		return;
-  	console.log('asdf');
   	this.uploader.upload(this.files);	
 
   }

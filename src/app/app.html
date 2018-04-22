@@ -8,7 +8,7 @@
   <ion-content>
     <ion-list>
       <div *ngFor="let p of pages" (click)="openPage(p)">
-        <button menuClose ion-item *ngIf="!auth.token" >
+        <button menuClose ion-item >
           {{p.title}}
         </button>
       </div>

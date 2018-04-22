@@ -5,22 +5,21 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
-import { Authentication } from '../services/authentication';
-import { Uploader } from '../services/uploader';
+import { SingUpPage } from '../pages/sing-up/sing-up';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase  } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { Authentication } from '../services/authentication';
+
+import { Uploader } from '../services/uploader';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {SingUpPage} from '../pages/sing-up/sing-up';
-
 import {firebaseConfig} from '../environments/firebase-config';
-
-
 
 
 
@@ -29,27 +28,30 @@ import {firebaseConfig} from '../environments/firebase-config';
     MyApp,
     HomePage,
     ListPage,
-    SingUpPage
+    SingUpPage,
+    PerfilPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule,
-    AngularFireAuthModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ListPage,
-    SingUpPage
+    SingUpPage,
+    PerfilPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Authentication,
     Uploader,
+    AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

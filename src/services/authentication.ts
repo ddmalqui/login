@@ -11,6 +11,7 @@ export class Authentication{
 	}
 
 	public token : string;
+	 
 
 		setUp(){
 			//guardo en el local storage si alguien ya esta loguiado.
@@ -56,10 +57,15 @@ export class Authentication{
 		}
 
 		logOut(){
-			console.log('sarasa');
 			return this.AgularAuth.auth.signOut().then(() => 
 				{this.token = null}
 				)
+		}
+
+		setProfileData(){
+			// this.AgularAuth.authState.suscribe(auth => {
+			// 	this.AngularDB.list('profile/${auth.uid}')
+			// })
 		}
 
 

@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { SingUpPage } from '../pages/sing-up/sing-up';
+import { PerfilPage } from '../pages/perfil/perfil';
 
 import { Authentication } from '../services/authentication';
 
@@ -28,11 +29,8 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Inicio', component: HomePage }];
-
-       this.invitedPages = [{ title: 'Crear Cuenta', component: SingUpPage }];
-
+    this.pages = [{ title: 'Inicio', component: HomePage },{ title: 'Mis Datos', component: PerfilPage }];
+    this.invitedPages = [{ title: 'Crear Cuenta', component: SingUpPage }];
   }
 
   initializeApp() {
