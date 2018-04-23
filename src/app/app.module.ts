@@ -18,6 +18,7 @@ import { Uploader } from '../services/uploader';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Device } from '@ionic-native/device';
 
 import {firebaseConfig} from '../environments/firebase-config';
 
@@ -51,6 +52,7 @@ import {firebaseConfig} from '../environments/firebase-config';
     SplashScreen,
     Authentication,
     Uploader,
+    Device,
     AngularFireDatabase,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

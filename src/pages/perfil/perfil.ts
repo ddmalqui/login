@@ -24,7 +24,7 @@ export class PerfilPage {
   	userId: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angularAuth : AngularFireAuth
-  	,public angularDDBB : AngularFireDatabase, public device: Device) {
+  	,public angularDDBB : AngularFireDatabase, private device: Device) {
 
     this.angularAuth.authState.subscribe((firebaseUser) => {
 				if(firebaseUser){
@@ -37,6 +37,8 @@ export class PerfilPage {
 			}
 				)
 
+    console.log('Device platform is: ' + this.device.platform);
+    console.log('Device platform isvirtual: ' + this.device.isVirtual);
    
   }
 
