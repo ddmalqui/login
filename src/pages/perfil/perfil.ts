@@ -3,7 +3,7 @@ import { Perfil } from '../../models/perfil';
 import { Component } from '@angular/core';
 import { Device } from '@ionic-native/device';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
@@ -20,7 +20,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class PerfilPage {
 
-
+    perfil = {} as Perfil;
   	userId: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angularAuth : AngularFireAuth
@@ -37,14 +37,23 @@ export class PerfilPage {
 			}
 				)
 
-    console.log('Device platform is: ' + this.device.platform);
-    console.log('Device platform isvirtual: ' + this.device.isVirtual);
-   
+    var allPerfil = angularDDBB.database.ref("profiles/cGN0xBpaISMMNe1pMNTOJp7DMZH2/username");
+
+   var onValueChange = allPerfil.on('value', function(dataSnapshot) {  });
+
+   console.log(onValueChange);
+
+
+
+    if (this.device.model !== null){
+      this.perfil.username = 'J7 2016';
+    }
+    else{
+       this.perfil.username = this.device.model;
+    }
   }
 
-  	perfil = {} as Perfil;
   	arrData = [];
-  	username;
   	
 
   ionViewDidLoad() {

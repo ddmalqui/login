@@ -27,8 +27,10 @@
 
 	<ion-item>
 		<ion-label floating> Last Name : </ion-label>
-		<ion-input [(ngModel)]="perfil.lastName"></ion-input>
+		<ion-input [(ngModel)]="perfil.lastName"> </ion-input>
 	</ion-item>
+
+	{{perfil.username}}
 
 	<button ion-button clear block (click)="setProfile()"> Guardar Cambios</button>
 </ion-content>
