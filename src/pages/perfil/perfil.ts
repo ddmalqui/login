@@ -1,13 +1,10 @@
 
 import { Perfil } from '../../models/perfil';
 import { Component } from '@angular/core';
+import { Device } from '@ionic-native/device';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-
-
-
-
 
 /**
  * Generated class for the PerfilPage page.
@@ -27,7 +24,7 @@ export class PerfilPage {
   	userId: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public angularAuth : AngularFireAuth
-  	,public angularDDBB : AngularFireDatabase ) {
+  	,public angularDDBB : AngularFireDatabase, public device: Device) {
 
     this.angularAuth.authState.subscribe((firebaseUser) => {
 				if(firebaseUser){
@@ -40,12 +37,7 @@ export class PerfilPage {
 			}
 				)
 
-    
-    //this.angularDDBB.list("profiles/${this.userId}").valueChanges().subscribe(data => {
-  	//	this.arrData = data;});
-
-  	//console.log(this.arrData);
-
+   
   }
 
   	perfil = {} as Perfil;
@@ -58,8 +50,7 @@ export class PerfilPage {
   }
 
   setProfile(){
-	this.angularDDBB.list("profiles/"+this.userId).push(this.perfil);
-
+	this.angularDDBB.object("profiles/"+this.userId).set(this.perfil).then(() => console.log('puto'));
   }
 
 }

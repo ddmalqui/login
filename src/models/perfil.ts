@@ -1,5 +1,5 @@
 export interface Perfil{
 	username : string;
-	firstName : string;
+	phone : number;
 	lastName : string;
 }
