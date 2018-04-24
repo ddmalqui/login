@@ -37,12 +37,19 @@ export class PerfilPage {
 			}
 				)
 
-    var allPerfil = angularDDBB.database.ref("profiles/cGN0xBpaISMMNe1pMNTOJp7DMZH2/username");
 
-   var onValueChange = allPerfil.on('value', function(dataSnapshot) {  });
+// Attach an asynchronous callback to read the data at our posts reference
 
-   console.log(onValueChange);
 
+var onePerson =  angularDDBB.database.ref(this.userId);
+
+onePerson.on("child_added", function(snapshot, prevChildKey) {
+  var newPost = snapshot.val();
+  console.log("zc: " + newPost);
+  console.log("Author: " + newPost.username);
+  console.log("Title: " + newPost.phone);
+  console.log("Previous Post ID: " + newPost.lastName);
+});
 
 
     if (this.device.model !== null){
