@@ -13,62 +13,49 @@ import { AngularFireAuth } from 'angularfire2/auth';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
-@Component({
-  selector: 'page-perfil',
-  templateUrl: 'perfil.html',
-})
-export class PerfilPage {
+ @IonicPage()
+ @Component({
+   selector: 'page-perfil',
+   templateUrl: 'perfil.html',
+ })
+ export class PerfilPage {
 
-    perfil = {} as Perfil;
-  	userId: string;
+   perfil = {} as Perfil;
+   userId: string;
+   username: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public angularAuth : AngularFireAuth
-  	,public angularDDBB : AngularFireDatabase, private device: Device) {
+   constructor(public navCtrl: NavController, public navParams: NavParams, public angularAuth : AngularFireAuth
+     ,public angularDDBB : AngularFireDatabase, private device: Device, message: string) {
 
-    this.angularAuth.authState.subscribe((firebaseUser) => {
-				if(firebaseUser){
-					 this.userId = firebaseUser.uid;
-					 console.log('userId ' + this.userId);
-				}else{
-					 this.userId = null;
-					 console.log('no tengo userId ' + this.userId);
-				}
-			}
-				)
+     this.angularAuth.authState.subscribe((firebaseUser) => {
+         
+        if(firebaseUser){
 
+         this.userId = firebaseUser.uid;
+         let starCountRef = this.angularDDBB.database.ref("profiles/"+firebaseUser.uid);
+         let query = starCountRef.on("value", function(snapshot) {
+           console.log('snapshot.val().username: ' + snapshot.val().username );
+           message = snapshot.val().username;
+         }, function (errorObject) {
+           console.log("The read failed: " + errorObject.code);
+         });
 
-// Attach an asynchronous callback to read the data at our posts reference
+       }else{
+         this.userId = null;
+         console.log('no tengo userId ' + this.userId);
+       }
+     }
+     )
 
+      console.log('this.username: ' + this.username);
+}
 
-var onePerson =  angularDDBB.database.ref(this.userId);
+ionViewDidLoad() {
+  console.log('ionViewDidLoad PerfilPage');
+}
 
-onePerson.on("child_added", function(snapshot, prevChildKey) {
-  var newPost = snapshot.val();
-  console.log("zc: " + newPost);
-  console.log("Author: " + newPost.username);
-  console.log("Title: " + newPost.phone);
-  console.log("Previous Post ID: " + newPost.lastName);
-});
-
-
-    if (this.device.model !== null){
-      this.perfil.username = 'J7 2016';
-    }
-    else{
-       this.perfil.username = this.device.model;
-    }
-  }
-
-  	arrData = [];
-  	
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
-  }
-
-  setProfile(){
+setProfile(){
 	this.angularDDBB.object("profiles/"+this.userId).set(this.perfil).then(() => console.log('puto'));
-  }
+}
 
 }

@@ -17,7 +17,7 @@
 
 	<ion-item>
 		<ion-label floating> Username : </ion-label>
-		<ion-input [(ngModel)]="perfil.username"></ion-input>
+		<ion-input [(ngModel)]="perfil.username" value="{{perfil.username}}"></ion-input>
 	</ion-item>
 
 	<ion-item>
@@ -30,7 +30,7 @@
 		<ion-input [(ngModel)]="perfil.lastName"> </ion-input>
 	</ion-item>
 
-	{{perfil.username}}
+	
 
 	<button ion-button clear block (click)="setProfile()"> Guardar Cambios</button>
 </ion-content>
