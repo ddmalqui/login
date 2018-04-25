@@ -14,23 +14,37 @@
 
 
 <ion-content padding>
-
+<form #perfilForm="ngForm" (submit)="onSubmit(perfilForm)">
 	<ion-item>
 		<ion-label floating> Username : </ion-label>
-		<ion-input [(ngModel)]="perfil.username" value="{{perfil.username}}"></ion-input>
+		<ion-input type="text" name="username"
+		#username="ngModel" [(ngModel)]="crud.selectPerfil.username">
+		</ion-input>
 	</ion-item>
 
 	<ion-item>
 		<ion-label floating> Telefono : </ion-label>
-		<ion-input type="number" [(ngModel)]="perfil.phone"></ion-input>
+		<ion-input type="number" name="phone"
+		#phone="ngModel" [(ngModel)]="crud.selectPerfil.phone">
+		</ion-input>
 	</ion-item>
 
 	<ion-item>
-		<ion-label floating> Last Name : </ion-label>
-		<ion-input [(ngModel)]="perfil.lastName"> </ion-input>
+		<ion-label floating> lastName : </ion-label>
+		<ion-input type="text" name="lastName"
+		#lastName="ngModel" [(ngModel)]="crud.selectPerfil.lastName">
+		</ion-input>
 	</ion-item>
 
-	
+	<button ion-button clear block type="submit"> Guardar Cambios</button>
 
-	<button ion-button clear block (click)="setProfile()"> Guardar Cambios</button>
-</ion-content>
+</form>
+
+
+  <ul>
+    <li *ngFor="let perfil of perfiList">
+      {{perfil.username}}
+    </li>
+  </ul>
+
+

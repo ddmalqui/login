@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
@@ -12,7 +14,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase  } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+/*Services*/
 import { Authentication } from '../services/authentication';
+import { Crud } from '../services/crud';
 
 import { Uploader } from '../services/uploader';
 
@@ -37,7 +41,8 @@ import {firebaseConfig} from '../environments/firebase-config';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,6 +56,7 @@ import {firebaseConfig} from '../environments/firebase-config';
     StatusBar,
     SplashScreen,
     Authentication,
+    Crud,
     Uploader,
     Device,
     AngularFireDatabase,
