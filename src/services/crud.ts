@@ -20,8 +20,13 @@ export class Crud{
 		return this.perfilList = this.firebase.list('profiles');
 	}
 
-	insertPerfil(perfil : Perfil){
+	getAPerfil(){
+		return this.perfilList = this.firebase.list('profiles');
+	}
+
+	insertPerfil(perfil : Perfil, key : string){
 		this.perfilList.push({
+			$key : key,
 			name: perfil.username,
 			phone: perfil.phone,
 			lastName: perfil.lastName
