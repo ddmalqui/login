@@ -20,17 +20,23 @@ export class Crud{
 		return this.perfilList = this.firebase.list('profiles');
 	}
 
-	getAPerfil(){
-		return this.perfilList = this.firebase.list('profiles');
+	getAPerfil(key : string){
+		return this.perfilList = this.firebase.list('profiles/'+key);
 	}
 
 	insertPerfil(perfil : Perfil, key : string){
-		this.perfilList.push({
-			$key : key,
-			name: perfil.username,
+		// this.perfilList.push({
+		// 	name: perfil.username,
+		// 	phone: perfil.phone,
+		// 	lastName: perfil.lastName
+		// });
+
+		var usersRef = this.firebase.database.ref("profiles");
+		usersRef.child(key).set({
+ 			name: perfil.username,
 			phone: perfil.phone,
 			lastName: perfil.lastName
-		})
+		});
 	}
 
 	updateProduct(perfil : Perfil){

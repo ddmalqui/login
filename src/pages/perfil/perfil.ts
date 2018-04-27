@@ -1,4 +1,3 @@
-
 //import { Perfil } from '../../models/perfil';
 import { Component, OnInit } from '@angular/core';
 import { Device } from '@ionic-native/device';
@@ -31,15 +30,21 @@ import { Perfil } from '../../models/perfil';
 
    ngOnInit(){
      //lleno el arreglo con los/el perfil
-     this.crud.getPerfil().snapshotChanges().subscribe(items => {
+      this.angularAuth.authState.subscribe((firebaseUser) => {
+      if(firebaseUser){
+        this.crud.getAPerfil(firebaseUser.uid).snapshotChanges().subscribe(items => {
        this.perfiList = [];
+       let x = [];
+       console.log(items);
        items.forEach(element =>{
-         let x = element.payload.toJSON();
-         x["$key"] = element.key;
+         x[element.key] = element.payload.toJSON();
          console.log(x);
-         this.perfiList.push(x as Perfil)  
        })
+       this.perfiList.push(x as Perfil);
        });
+      }
+  })
+     
    }
 
    constructor(public navCtrl: NavController, public navParams: NavParams, public angularAuth : AngularFireAuth
@@ -48,21 +53,18 @@ import { Perfil } from '../../models/perfil';
      // this.angularAuth.authState.subscribe((firebaseUser) => {
          
      //    if(firebaseUser){
-
      //     this.userId = firebaseUser.uid;
      //     let starCountRef = this.angularDDBB.database.ref("profiles/"+firebaseUser.uid);
      //     let query = starCountRef.on("value", function(snapshot) {
      //     }, function (errorObject) {
      //       console.log("The read failed: " + errorObject.code);
      //     });
-
      //   }else{
      //     this.userId = null;
      //     console.log('no tengo userId ' + this.userId);
      //   }
      // }
      // )
-
      //  console.log('this.username: ' + this.username);
 }
 
