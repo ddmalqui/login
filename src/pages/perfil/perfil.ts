@@ -7,6 +7,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Crud } from '../../services/crud';
 import { NgForm } from '@angular/forms';
 import { Perfil } from '../../models/perfil';
+import { ToastController } from 'ionic-angular';
+
 
 
 /**
@@ -24,31 +26,32 @@ import { Perfil } from '../../models/perfil';
 
  export class PerfilPage implements OnInit{
 
-   perfiList : Perfil[];
+   perfiList = [];
    userId: string;
-   username: string;
 
+/*TODO: Estoy trabajando mal con el modelo. deberia definir un array del modelo pefil*/
    ngOnInit(){
      //lleno el arreglo con los/el perfil
+     this.perfiList = [];
+     let arr = [];
       this.angularAuth.authState.subscribe((firebaseUser) => {
       if(firebaseUser){
-        this.crud.getAPerfil(firebaseUser.uid).snapshotChanges().subscribe(items => {
+       this.crud.getAPerfil(firebaseUser.uid).snapshotChanges().subscribe(items => {
        this.perfiList = [];
-       let x = [];
        console.log(items);
        items.forEach(element =>{
-         x[element.key] = element.payload.toJSON();
-         console.log(x);
+         let x = element.payload.toJSON();
+         this.perfiList[element.key] = x;
        })
-       this.perfiList.push(x as Perfil);
        });
+       console.log(this.perfiList);
       }
   })
      
    }
 
    constructor(public navCtrl: NavController, public navParams: NavParams, public angularAuth : AngularFireAuth
-     ,public angularDDBB : AngularFireDatabase, private device: Device, private crud : Crud) {
+     ,public angularDDBB : AngularFireDatabase, private device: Device, private crud : Crud, private toastCtrl: ToastController) {
 
      // this.angularAuth.authState.subscribe((firebaseUser) => {
          
@@ -79,10 +82,23 @@ setProfile(){
 onSubmit(perfilForm : NgForm){
   this.angularAuth.authState.subscribe((firebaseUser) => {
       if(firebaseUser){
+        try{
         this.crud.insertPerfil(perfilForm.value, firebaseUser.uid);
+        this.presentToast('Se han guardado los cambios correctamente');
+      }catch{
+        this.presentToast('No se han podido actualizar los cambios en la Base de Datos');
+      }
       }
   })
 
 }
 
+presentToast(msn : string) {
+    let toast = this.toastCtrl.create({
+      message: msn,
+      duration: 3000,
+      position: 'top',
+    });
+    toast.present();
+  }
 }

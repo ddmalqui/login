@@ -33,7 +33,7 @@ export class Crud{
 
 		var usersRef = this.firebase.database.ref("profiles");
 		usersRef.child(key).set({
- 			name: perfil.username,
+ 			name: perfil.name,
 			phone: perfil.phone,
 			lastName: perfil.lastName
 		});

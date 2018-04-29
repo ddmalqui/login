@@ -1,5 +1,5 @@
 export class Perfil{
-	username : string;
+	name : string;
 	phone : number;
 	lastName : string;
 }

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ToastController } from 'ionic-angular';
+
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
@@ -57,6 +59,7 @@ import {firebaseConfig} from '../environments/firebase-config';
     SplashScreen,
     Authentication,
     Crud,
+    ToastController,
     Uploader,
     Device,
     AngularFireDatabase,
